@@ -1,2 +1,4 @@
-zmienione kolory na b³êkity
-wykryty (przy zoomowaniu strony) i usuniêty bug w @media (orientation:landscape) and (max-width:750px )
+1. Change a responsive site from Media Querys: @media {}; to Flex: display:flex;
+2. Strart background added;
+3. Interaction Java Script and basic animation CSS added;
+4. footer added;

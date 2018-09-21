@@ -17,6 +17,7 @@ font-family: 'Saira';
     --colorProgress: #7bb500;
     --colorLevel: #d2a029;
     --vLight: #e5f1f7;
+    --transition: .7s;
 }
 
 body {
@@ -25,142 +26,285 @@ body {
     color: var(--vLight);
 }
 
-main {
-    position: relative;
-    top: 0;
-    left: 0;
-    min-width: 100vw;
+.first {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url(img/brain-creative-logic.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    animation: move 1.2s cubic-bezier(.44, 1.29, .61, 1.24) both;
 }
 
-.topleft {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: var(--dBlue);
-    width: 100%;
-    height: 50vh;
-    border: 10px solid var(--vDark);
-    font-family: 'Saira Extra Condensed';
+@keyframes move {
+    0% {
+        transform: translate(150%, -50%)
+    }
+
+    100% {
+        transform: translate(0)
+    }
 }
 
-.name {
-    position: absolute;
-    top: 36px;
-    left: 24px;
-    font-family: 'Audiowide';
-    font-size: 40px;
-    line-height: 105%;
+.moveUp {
+    background-color: rgba(0, 24, 36, 0.133);
+    flex-basis: 33%;
+    animation: coverMove 2.7s .6s ease forwards;
 }
 
-.aspiration {
-    position: absolute;
-    bottom: 9.5vh;
-    left: 24px;
-    margin: 0;
-    font-size: 16px;
+.moveDown {
+    background-color: rgba(0, 24, 36, 0.133);
+    flex-basis: 33%;
+    animation: coverMove 2.7s .6s ease forwards;
 }
 
-.start {
-    position: absolute;
-    bottom: 2.5vh;
-    left: 24px;
-    margin: 0;
-    font-size: 14px;
-    line-height: 105%;
+@keyframes coverMove {
+    20% {
+        flex-basis: 45%;
+        background-color: #001824ff;
+    }
+
+    50% {
+        flex-basis: 3%;
+        background-color: #00182488;
+    }
+
+    100% {
+        flex-basis: 33%;
+        background-color: #00182455;
+    }
 }
 
-.topright {
-    position: absolute;
-    top: 50vh;
-    left: 0;
-    width: 100%;
-    height: 50vh;
-    border: 10px solid var(--vDark);
-    background-color: var(--Blue);
-}
-
-.topright img {
-    position: absolute;
-    top: 36px;
-    right: 20px;
-    height: 80%;
-    max-height: 450px;
-    border: 3px solid var(--vDark);
-    border-radius: 3px;
-}
-
-.left {
-    position: absolute;
-    top: 100vh;
-    left: 0;
-    width: 100%;
-    height: 95vh;
-    padding: 24px;
-    border: 10px solid var(--vDark);
-    background-color: var(--vLight);
-    color: var(--vDark);
-}
-
-.right {
-    position: absolute;
-    top: 195vh;
-    right: 0;
-    width: 100%;
-    padding: 24px;
-    border: 10px solid var(--vDark);
-    background-color: var(--vLight);
-    color: var(--vDark);
-}
-
-h2 {
-    font-family: 'Audiowide';
-    font-size: 20px;
+main.wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 1024px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 p {
     font-family: 'Saira';
     font-size: 14px;
+}
+
+header.top {
+    display: flex;
+    flex-direction: column;
+}
+
+.topleft {
+    position: relative;
+    top: 0;
+    left: -100%;
+    flex-basis: 50vh;
+    background-color: var(--dBlue);
+    border: 10px solid var(--vDark);
+    font-family: 'Saira Extra Condensed', sans-serif;
+    transition: var(--transition);
+}
+
+.topleft.active {
+    left: 0;
+}
+
+.name {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-family: 'Audiowide', sans-serif;
+    font-size: 40px;
+    line-height: 105%;
+}
+
+.aspTechBox {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+}
+
+.aspiration {
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.technology {
+    line-height: 105%;
+}
+
+.topright {
+    position: relative;
+    top: 0;
+    right: -100%;
+    flex-basis: 50vh;
+    border: 10px solid var(--vDark);
+    background-color: var(--Blue);
+    transition: var(--transition);
+}
+
+.topright.active {
+    right: 0;
+}
+
+.topright img {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    height: 83%;
+    max-height: 450px;
+    border: 3px solid var(--vDark);
+    border-radius: 3px;
+}
+
+article.content {
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    font-family: 'Audiowide', sans-serif;
+    font-size: 20px;
+}
+
+.content p {
     margin: 12px;
 }
 
-h3 {
-    font-family: 'Saira';
-    font-size: 14px;
+.content h3 {
     margin: 12px;
 }
 
 a {
+    padding-left: 2px;
+    padding-right: 5px;
     color: crimson;
     text-decoration: none;
     font-style: italic;
+    transition: var(--transition);
+}
+
+a:hover {
+    background-color: crimson;
+    color: var(--vLight);
+}
+
+.left {
+    padding: 24px;
+    border: 10px solid var(--vDark);
+    background-color: var(--vLight);
+    color: var(--vDark);
+}
+
+.adres {
+    transition: var(--transition);
+    transform: translate(-100%);
+}
+
+.adres.active {
+    transform: translate(0%);
+}
+
+.education {
+    transition: var(--transition);
+    transform: translate(-100%);
+}
+
+.education.active {
+    transform: translate(0%);
+}
+
+.skills {
+    transition: var(--transition);
+    transform: translate(-100%);
+}
+
+.skills.active {
+    transform: translate(0%);
+}
+
+.right {
+    padding: 24px;
+    border: 10px solid var(--vDark);
+    background-color: var(--vLight);
+    color: var(--vDark);
+}
+
+.future {
+    transition: var(--transition);
+    transform: translate(110%);
+}
+
+.future.active {
+    transform: translate(0%);
+}
+
+.present {
+    transition: var(--transition);
+    transform: translate(110%);
+}
+
+.present.active {
+    transform: translate(0%);
+}
+
+.past {
+    transition: var(--transition);
+    transform: translate(110%);
+}
+
+.past.active {
+    transform: translate(0%);
 }
 
 .quote {
-    color: crimson;
+    color: transparent;
     font-size: 20px;
     font-weight: 300;
     letter-spacing: 1px;
     line-height: 105%;
     margin: 35px 23%;
+    transition: var(--transition);
+    cursor: default;
 }
 
-@media (orientation: portrait) {
-    .topright img {
-        top: 18px;
-    }
+.quote.active {
+    color: #dc143c;
+}
+
+.quote:hover {
+    color: var(--vDark);
+}
+
+footer.bot p {
+    text-align: center;
+    padding: 12px;
 }
 
 @media (orientation: portrait) and (min-width: 400px) {
     .name {
+        top: 36px;
+        left: 36px;
         font-size: 60px;
+    }
+
+    .aspTechBox {
+        bottom: 36px;
+        left: 36px;
     }
 
     .aspiration {
         font-size: 20px;
     }
 
-    .start {
+    .technology {
         font-size: 20px;
+    }
+
+    .topright img {
+        top: 36px;
+        right: 36px;
     }
 
     h2 {
@@ -189,7 +333,7 @@ a {
         font-size: 24px;
     }
 
-    .start {
+    .technology {
         font-size: 24px;
     }
 
@@ -219,7 +363,7 @@ a {
         font-size: 48px;
     }
 
-    .start {
+    .technology {
         font-size: 36px;
     }
 
@@ -241,112 +385,72 @@ a {
 }
 
 @media (orientation: landscape) {
-    .topleft {
-        width: 50%;
-        height: 100vh;
-    }
-
-    .aspiration {
-        bottom: 14vh;
-    }
-
-    .start {
-        font-size: 12px;
-    }
-
-    .topright {
-        top: 0;
-        left: 50%;
-        width: 50%;
-        height: 100vh;
-    }
-
-    .left {
-        top: 100vh;
-        width: 100%;
-        height: 120vh;
-    }
-
-    .right {
-        top: 220vh;
-        width: 100%;
-    }
-}
-
-@media (orientation: landscape) and (min-width: 640px) {}
-
-@media (orientation: landscape) and (min-width: 800px) {}
-
-@media (min-width: 1024px) and (max-height: 700px) {
-    main {
-        right: auto;
-        min-width: 1024px;
-        max-width: 1024px;
-        margin: 0 auto;
+    header.top {
+        flex-direction: row;
     }
 
     .topleft {
-        width: 34%;
-        height: 200px;
+        flex-grow: 1;
+        height: 100vh;
     }
 
     .name {
-        top: 18px;
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        font-size: 50px;
     }
 
-    .aspiration {
-        bottom: 7vh;
+    .aspTechBox {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
     }
 
     .topright {
-        left: 34%;
-        width: 66%;
-        height: 200px;
+        flex-grow: 1;
     }
 
     .topright img {
-        top: 18px;
-    }
-
-    .left {
-        top: 200px;
-        width: 34%;
-        min-height: 850px;
-    }
-
-    .right {
-        top: 200px;
-        width: 66%;
-        min-height: 850px;
-    }
-}
-
-@media (min-width: 1024px) and (min-height: 701px) {
-    main {
-        right: auto;
-        min-width: 1024px;
-        max-width: 1024px;
-        margin: 0 auto;
-    }
-
-    .topleft {
-        width: 34%;
-        height: 33vh;
-    }
-
-    .name {
-        top: 18px;
+        position: absolute;
+        top: 24px;
+        bottom: 24px;
+        right: 24px;
     }
 
     .aspiration {
-        bottom: 7vh;
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .content h3 {
+        font-size: 18px;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 868px) {
+    header.top {
+        flex-direction: row;
+    }
+
+    .topleft {
+        flex-grow: 0;
+        height: 33vh;
+        min-height: 250px;
+        flex-basis: 341px;
     }
 
     .topright {
-        top: 0;
-        left: 34%;
-        width: 66%;
+        flex-grow: 1;
         height: 33vh;
+        min-height: 250px;
     }
 
     .topright img {
@@ -366,39 +470,15 @@ a {
     }
 
     .left {
-        top: 33vh;
-        width: 34%;
-        height: 1024px;
+        flex-grow: 0;
+        flex-basis: 341px;
     }
 
     .right {
-        top: 33vh;
-        width: 66%;
-        height: 1024px;
+        flex-grow: 1;
+    }
+
+    article.content {
+        flex-direction: row;
     }
 }
-
-@media (min-width: 1024px) and (orientation: portrait) {
-    .name {
-        font-size: 40px;
-    }
-
-    .aspiration {
-        font-size: 18px;
-    }
-
-    .start {
-        font-size: 18px;
-    }
-}
-
-/* 
-    
-    .topleft {
-        max-height: 360px;
-    }
-
-    .topright {
-        max-height: 360px;
-    } 
-    */
