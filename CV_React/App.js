@@ -1,12 +1,18 @@
+const FirstElementOnPage = () => {
+  return (
+    <div className="first">
+      <div className="moveUp"> </div> <div className="moveDown"> </div>{" "}
+    </div>
+  );
+};
+
 class CV extends React.Component {
   state = {};
 
   render() {
     return (
       <React.Fragment>
-        <div className="first">
-          <div className="moveUp"> </div> <div className="moveDown"> </div>{" "}
-        </div>
+        {FirstElementOnPage()}
         <main className="wrapper">
           <header className="top">
             <div className="topleft">
